@@ -55,3 +55,4 @@ webgoat.script
 TestClass.class
 **/*.flattened-pom.xml
 /.gitconfig
+contrast/contrast_security.yaml
