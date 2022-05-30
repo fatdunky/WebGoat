@@ -1,17 +1,33 @@
+#sudo docker run -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=Australia/Sydney webgoat/webgoat
+#https://docs.microsoft.com/en-us/azure/app-service/tutorial-custom-container?pivots=container-linux
+
 FROM docker.io/eclipse-temurin:17-jdk-focal
 
 RUN useradd -ms /bin/bash webgoat
 RUN chgrp -R 0 /home/webgoat
 RUN chmod -R g=u /home/webgoat
+RUN mkdir /home/webgoat/cs-client
 
 USER webgoat
 
 COPY --chown=webgoat target/webgoat-*.jar /home/webgoat/webgoat.jar
+COPY --chown=webgoat target/webgoat-*.jar /home/webgoat/webgoat.jar
+COPY --chown=webgoat contrast/contrast-agent*.jar /home/webgoat/cs-client/contrast-agent.jar
+COPY --chown=webgoat contrast/contrast_security.yaml /home/webgoat/cs-client/contrast_security.yaml
+
+ENV CONTRAST_OPTS "-javaagent:/home/webgoat/cs-client/contrast-agent.jar \
+-Dcontrast.config.path=/home/webgoat/cs-client/contrast_security.yaml"
+
+ENV JAVA_TOOL_OPTIONS $CONTRAST_OPTS \
+-DcontactEmail=fatdunky@gmail.com,contactName=Mark \
+-Dcontrast.agent.java.standalone_app_name=APP \
+-Dcontrast.application.group=APP_GROUP
 
 EXPOSE 8080
 EXPOSE 9090
 
 WORKDIR /home/webgoat
+
 ENTRYPOINT [ "java", \
    "-Duser.home=/home/webgoat", \
    "-Dfile.encoding=UTF-8", \

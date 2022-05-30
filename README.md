@@ -7,6 +7,21 @@
 [![Gitter](https://badges.gitter.im/OWASPWebGoat/community.svg)](https://gitter.im/OWASPWebGoat/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Discussions](https://img.shields.io/github/discussions/WebGoat/WebGoat)](https://github.com/WebGoat/WebGoat/discussions)
 
+
+# (Mark local edit)
+
+## Build 
+
+```
+az webapp deploy --resource-group rg-contrast --name wa-webgoat --clean true --type jar --debug --restart=true --src-path webgoat-8.2.3-SNAPSHOT.jar
+```
+
+## ssh
+
+```
+az webapp create-remote-connection --subscription f37ea1e2-e7c6-467b-bdc9-6f3499001091 --resource-group rg-contrast -n wa-webgoat 
+```
+
 # Introduction
 
 WebGoat is a deliberately insecure web application maintained by [OWASP](http://www.owasp.org/) designed to teach web
