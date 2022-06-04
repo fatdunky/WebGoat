@@ -1,4 +1,4 @@
-# ./mvnw clean package
+
 #sudo docker build -f Dockerfile . -t webgoat/webgoat
 #sudo docker run -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=Australia/Sydney webgoat/webgoat
 #sudo docker run -it --name webgoat_mc --rm -d -p 80:8080 -p 9090:9090 -e WEBGOAT_HOST=0.0.0.0 -e TZ=Australia/Sydney webgoat/webgoat
@@ -22,6 +22,7 @@ ENV CONTRAST_OPTS "-javaagent:/home/webgoat/cs-client/contrast-agent.jar \
 
 ENV JAVA_TOOL_OPTIONS $CONTRAST_OPTS \
 -DcontactEmail=fatdunky@gmail.com,contactName=Mark \
+-Dcontrast.agent.java.standalone_app_name=webgoat_mc \
 -Dcontrast.application.group=APP_GROUP
 
 EXPOSE 8080
