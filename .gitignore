@@ -56,3 +56,4 @@ TestClass.class
 **/*.flattened-pom.xml
 /.gitconfig
 contrast/contrast_security.yaml
+scripts/set_env.sh

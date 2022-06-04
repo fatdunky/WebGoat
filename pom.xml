@@ -369,6 +369,49 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>assess</id>
+            <build>
+                <plugins>
+                <plugin>
+                    <groupId>com.contrastsecurity</groupId>
+                    <artifactId>contrast-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>assess-install</id>
+                            <goals>
+                                <goal>install</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>assess-verify</id>
+                            <goals>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>scan</id>
+            <build>
+                <plugins>
+                <plugin>
+                    <groupId>com.contrastsecurity</groupId>
+                    <artifactId>contrast-maven-plugin</artifactId>
+                    <executions>
+                    <execution>
+                        <goals>
+                        <goal>scan</goal>
+                        </goals>
+                    </execution>
+                    </executions>
+                </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 
@@ -660,6 +703,20 @@
                 </executions>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                <groupId>com.contrastsecurity</groupId>
+                <artifactId>contrast-maven-plugin</artifactId>
+                <configuration>
+                    <username>${env.CONTRAST__API__USER_NAME}</username>
+                    <apiKey>${env.CONTRAST__API__API_KEY}</apiKey>
+                    <serviceKey>${env.CONTRAST__API__SERVICE_KEY}</serviceKey>
+                    <orgUuid>${env.CONTRAST__API__ORGANIZATION_ID}</orgUuid>
+                </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <repositories>
