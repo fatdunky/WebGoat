@@ -22,7 +22,6 @@ ENV CONTRAST_OPTS "-javaagent:/home/webgoat/cs-client/contrast-agent.jar \
 
 ENV JAVA_TOOL_OPTIONS $CONTRAST_OPTS \
 -DcontactEmail=fatdunky@gmail.com,contactName=Mark \
--Dcontrast.agent.java.standalone_app_name=APP \
 -Dcontrast.application.group=APP_GROUP
 
 EXPOSE 8080
