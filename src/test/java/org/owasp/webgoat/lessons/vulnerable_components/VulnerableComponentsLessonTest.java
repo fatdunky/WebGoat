@@ -48,6 +48,7 @@ public class VulnerableComponentsLessonTest {
 			"</contact>";
     
     @Test
+    @Disabled
     public void testTransformation() throws Exception {
     	XStream xstream = new XStream();
         xstream.setClassLoader(Contact.class.getClassLoader());

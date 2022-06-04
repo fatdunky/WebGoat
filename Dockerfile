@@ -1,6 +1,7 @@
+# ./mvnw clean package
+#sudo docker build -f Dockerfile . -t webgoat/webgoat
 #sudo docker run -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=Australia/Sydney webgoat/webgoat
-#sudo docker run -it --rm -d -p 80:8080 -p 9090:9090 -e WEBGOAT_HOST=0.0.0.0 -e TZ=Australia/Sydney webgoat/webgoat
-#https://docs.microsoft.com/en-us/azure/app-service/tutorial-custom-container?pivots=container-linux
+#sudo docker run -it --name webgoat_mc --rm -d -p 80:8080 -p 9090:9090 -e WEBGOAT_HOST=0.0.0.0 -e TZ=Australia/Sydney webgoat/webgoat
 
 FROM docker.io/eclipse-temurin:17-jdk-focal
 
