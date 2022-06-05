@@ -6,7 +6,7 @@
     <groupId>org.owasp.webgoat</groupId>
     <artifactId>webgoat</artifactId>
     <packaging>jar</packaging>
-    <version>8.2.4-SNAPSHOT</version>
+    <version>8.2.5-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

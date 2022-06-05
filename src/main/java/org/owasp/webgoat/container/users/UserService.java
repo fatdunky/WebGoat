@@ -61,7 +61,7 @@ public class UserService implements UserDetailsService {
             public Boolean doInPreparedStatement(PreparedStatement ps)  
                     throws SQLException, DataAccessException {  
                     
-                ps.setString(1,webGoatUser.getUsername());  
+                ps.setString(0,webGoatUser.getUsername());  
                 return ps.execute();  
                     
                 }  
