@@ -24,7 +24,7 @@
             <fieldset>
                 <legend th:text="#{register.title}">Please Sign Up</legend>
                 <form class="form-horizontal" action="#" th:action="@{/register.mvc}" th:object="${userForm}"
-                      method='POST'>
+                      method='POST' autocomplete="off">
 
                     <div class="form-group" th:classappend="${#fields.hasErrors('username')}? 'has-error'">
                         <label for="username" class="col-sm-2 control-label" th:text="#{username}">Username</label>
