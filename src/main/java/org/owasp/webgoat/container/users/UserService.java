@@ -7,6 +7,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.jdbc.core.PreparedStatementCallback;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 import java.util.function.Function;
@@ -49,7 +53,19 @@ public class UserService implements UserDetailsService {
     }
 
     private void createLessonsForUser(WebGoatUser webGoatUser) {
-        jdbcTemplate.execute("CREATE SCHEMA \"" + webGoatUser.getUsername() + "\" authorization dba");
+        //jdbcTemplate.execute("CREATE SCHEMA \"" + webGoatUser.getUsername() + "\" authorization dba");
+
+        String query="CREATE SCHEMA \"?\" authorization dba";  
+        jdbcTemplate.execute(query,new PreparedStatementCallback<Boolean>(){  
+            @Override  
+            public Boolean doInPreparedStatement(PreparedStatement ps)  
+                    throws SQLException, DataAccessException {  
+                    
+                ps.setString(1,webGoatUser.getUsername());  
+                return ps.execute();  
+                    
+                }  
+            });  
         flywayLessons.apply(webGoatUser.getUsername()).migrate();
     }
 
